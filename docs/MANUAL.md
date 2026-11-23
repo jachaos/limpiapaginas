@@ -78,6 +78,14 @@ El instalador hace cuatro cosas:
 
 Para instalar solo la parte de CPU aunque haya tarjeta gráfica: `instalar.bat -Cpu`. El instalador se puede repetir sin problema, por ejemplo tras actualizar el controlador de la gráfica.
 
+**Modelo del detector de texto.** El detector de texto neuronal (receta **3 Detectar texto**) necesita el [modelo de detección PP-OCRv6 small](https://huggingface.co/docs/transformers/model_doc/pp_ocrv6_small_det) de PaddleOCR, que no viene en el repositorio. Se descarga una sola vez: baja `inference.onnx` de [PaddlePaddle/PP-OCRv6_small_det_onnx](https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/tree/main) en Hugging Face y guárdalo en la carpeta `modelos` con el nombre `PP-OCRv6_det_small.onnx`. Desde la carpeta del proyecto se puede hacer con una orden (Linux, o Windows 10/11; en PowerShell escribe `curl.exe` en lugar de `curl`):
+
+```
+curl -L -o modelos/PP-OCRv6_det_small.onnx https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/resolve/main/inference.onnx
+```
+
+Sin el modelo funciona todo lo demás; el diagnóstico (paso 4) indica si falta.
+
 ### 3. Arrancar
 
 **Windows:** doble clic en **`iniciar.bat`**. **Linux:** `./iniciar.sh`.
