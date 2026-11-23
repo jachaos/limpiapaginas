@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+datos/salida/*
+!datos/salida/.gitkeep
+
+# Material propio que no va al repositorio: PDF de muestra, páginas extraídas y pruebas de revisión
+muestras/
+datos/revision/
+datos/entrada/*
+!datos/entrada/ejemplo_*.png
+!datos/entrada/CL-12-1909_p0007.png
+!datos/entrada/ESC-CAB-1845_p0013.png
+!datos/entrada/CL-1907-n159_p0001.png
+limpiapaginas.zip
+*.tmp

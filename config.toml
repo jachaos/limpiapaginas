@@ -1,0 +1,21 @@
+# Configuración de LimpiaPáginas. Las rutas relativas parten de esta carpeta.
+
+# Dónde se ejecutan los nodos que tienen versión para GPU:
+#   "auto" usa la GPU si PyTorch la ve; "cpu" la deja libre; "gpu" la exige.
+# También se puede cambiar desde la interfaz sin tocar este fichero.
+dispositivo = "auto"
+
+# Permite a OpenCV usar OpenCL (la GPU) en los filtros que lo admiten.
+opencl = true
+
+host = "127.0.0.1"
+puerto = 8765
+
+carpeta_entrada = "datos/entrada"
+carpeta_salida = "datos/salida"
+carpeta_flujos = "flujos"
+carpeta_modelos = "modelos"
+carpeta_nodos_extra = "nodos_extra"
+
+# Memoria máxima (MB) para guardar resultados intermedios y no recalcularlos.
+cache_mb = 1024

@@ -1,0 +1,17 @@
+[project]
+name = "limpiapaginas"
+version = "0.1.0"
+description = "Limpieza de páginas escaneadas antes del OCR, con un editor visual de flujos"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "opencv-contrib-python-headless>=4.10",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "python-multipart>=0.0.9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning"]

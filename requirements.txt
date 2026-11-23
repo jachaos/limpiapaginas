@@ -1,0 +1,7 @@
+# Dependencias base. PyTorch y ONNX Runtime los instala el script «instalar»
+# en su variante de GPU o de CPU según el equipo.
+numpy>=1.26
+opencv-contrib-python-headless>=4.10
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
