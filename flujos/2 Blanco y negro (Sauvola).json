@@ -1,0 +1,169 @@
+{
+ "version": 1,
+ "nombre": "2 Blanco y negro (Sauvola)",
+ "descripcion": "Página binarizada para motores de OCR clásicos: tinta negra pura sobre blanco.",
+ "nodos": [
+  {
+   "id": 1,
+   "tipo": "entrada/pagina",
+   "pos": [
+    40,
+    70
+   ],
+   "params": {
+    "modo": "grises"
+   },
+   "activo": true
+  },
+  {
+   "id": 2,
+   "tipo": "geometria/enderezar",
+   "pos": [
+    340,
+    70
+   ],
+   "params": {
+    "angulo_max": 5.0,
+    "precision": 0.1,
+    "minimo": 0.05,
+    "relleno": "papel"
+   },
+   "activo": true
+  },
+  {
+   "id": 8,
+   "tipo": "geometria/marco",
+   "pos": [
+    640,
+    70
+   ],
+   "params": {
+    "zona": 15.0,
+    "largo_min": 15.0,
+    "grosor_max": 1.5,
+    "tinta_fuera": 0.02,
+    "recuadros": true,
+    "limpiar_fuera": true,
+    "margen": 4,
+    "relleno": "papel"
+   },
+   "activo": true
+  },
+  {
+   "id": 3,
+   "tipo": "fondo/aplanar",
+   "pos": [
+    940,
+    70
+   ],
+   "params": {
+    "tam": 61,
+    "suavizado": 31,
+    "modo": "dividir"
+   },
+   "activo": true
+  },
+  {
+   "id": 4,
+   "tipo": "ruido/gaussiano",
+   "pos": [
+    1240,
+    70
+   ],
+   "params": {
+    "tam": 3,
+    "sigma": 0.0
+   },
+   "activo": true
+  },
+  {
+   "id": 5,
+   "tipo": "binarizar/local",
+   "pos": [
+    40,
+    580
+   ],
+   "params": {
+    "metodo": "sauvola",
+    "ventana": 41,
+    "k": 0.2,
+    "r": 128
+   },
+   "activo": true
+  },
+  {
+   "id": 6,
+   "tipo": "ruido/motas",
+   "pos": [
+    340,
+    580
+   ],
+   "params": {
+    "area_max": 8,
+    "proteccion": 20,
+    "umbral": 0,
+    "relleno": "blanco"
+   },
+   "activo": true
+  },
+  {
+   "id": 7,
+   "tipo": "salida/guardar",
+   "pos": [
+    640,
+    580
+   ],
+   "params": {
+    "formato": "png",
+    "sufijo": "",
+    "calidad_jpg": 92,
+    "solo_con_texto": false
+   },
+   "activo": true
+  }
+ ],
+ "enlaces": [
+  [
+   1,
+   "imagen",
+   2,
+   "imagen"
+  ],
+  [
+   2,
+   "imagen",
+   8,
+   "imagen"
+  ],
+  [
+   8,
+   "imagen",
+   3,
+   "imagen"
+  ],
+  [
+   3,
+   "imagen",
+   4,
+   "imagen"
+  ],
+  [
+   4,
+   "imagen",
+   5,
+   "imagen"
+  ],
+  [
+   5,
+   "imagen",
+   6,
+   "imagen"
+  ],
+  [
+   6,
+   "imagen",
+   7,
+   "imagen"
+  ]
+ ]
+}

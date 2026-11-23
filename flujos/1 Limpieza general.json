@@ -1,0 +1,200 @@
+{
+ "version": 1,
+ "nombre": "1 Limpieza general",
+ "descripcion": "Endereza, deja el papel blanco, quita el texto transparentado y las motas. Conserva los grises.",
+ "nodos": [
+  {
+   "id": 1,
+   "tipo": "entrada/pagina",
+   "pos": [
+    40,
+    70
+   ],
+   "params": {
+    "modo": "grises"
+   },
+   "activo": true
+  },
+  {
+   "id": 2,
+   "tipo": "geometria/bordes",
+   "pos": [
+    340,
+    70
+   ],
+   "params": {
+    "umbral": 90,
+    "margen": 6,
+    "area_min": 0.05,
+    "relleno": "papel"
+   },
+   "activo": true
+  },
+  {
+   "id": 3,
+   "tipo": "geometria/enderezar",
+   "pos": [
+    640,
+    70
+   ],
+   "params": {
+    "angulo_max": 5.0,
+    "precision": 0.1,
+    "minimo": 0.05,
+    "relleno": "papel"
+   },
+   "activo": true
+  },
+  {
+   "id": 9,
+   "tipo": "geometria/marco",
+   "pos": [
+    940,
+    70
+   ],
+   "params": {
+    "zona": 15.0,
+    "largo_min": 15.0,
+    "grosor_max": 1.5,
+    "tinta_fuera": 0.02,
+    "recuadros": true,
+    "limpiar_fuera": true,
+    "margen": 4,
+    "relleno": "papel"
+   },
+   "activo": true
+  },
+  {
+   "id": 4,
+   "tipo": "fondo/aplanar",
+   "pos": [
+    1240,
+    70
+   ],
+   "params": {
+    "tam": 61,
+    "suavizado": 31,
+    "modo": "dividir"
+   },
+   "activo": true
+  },
+  {
+   "id": 5,
+   "tipo": "fondo/transparencia",
+   "pos": [
+    40,
+    580
+   ],
+   "params": {
+    "fuerte": 0,
+    "debil": 0,
+    "relleno": "blanco",
+    "fuerza": 0.85
+   },
+   "activo": true
+  },
+  {
+   "id": 6,
+   "tipo": "ruido/motas",
+   "pos": [
+    340,
+    580
+   ],
+   "params": {
+    "area_max": 12,
+    "proteccion": 20,
+    "umbral": 0,
+    "relleno": "blanco"
+   },
+   "activo": true
+  },
+  {
+   "id": 7,
+   "tipo": "salida/guardar",
+   "pos": [
+    640,
+    580
+   ],
+   "params": {
+    "formato": "png",
+    "sufijo": "",
+    "calidad_jpg": 92,
+    "solo_con_texto": false
+   },
+   "activo": true
+  },
+  {
+   "id": 8,
+   "tipo": "texto/hay_texto",
+   "pos": [
+    340,
+    1020
+   ],
+   "params": {
+    "contraste": 20,
+    "alto_min": 6,
+    "alto_max": 70,
+    "letras_por_linea": 4,
+    "lineas_min": 2,
+    "union": 2.5
+   },
+   "activo": true
+  }
+ ],
+ "enlaces": [
+  [
+   1,
+   "imagen",
+   2,
+   "imagen"
+  ],
+  [
+   2,
+   "imagen",
+   3,
+   "imagen"
+  ],
+  [
+   3,
+   "imagen",
+   9,
+   "imagen"
+  ],
+  [
+   9,
+   "imagen",
+   4,
+   "imagen"
+  ],
+  [
+   4,
+   "imagen",
+   5,
+   "imagen"
+  ],
+  [
+   5,
+   "imagen",
+   6,
+   "imagen"
+  ],
+  [
+   6,
+   "imagen",
+   7,
+   "imagen"
+  ],
+  [
+   6,
+   "imagen",
+   8,
+   "imagen"
+  ],
+  [
+   8,
+   "datos",
+   7,
+   "datos"
+  ]
+ ]
+}

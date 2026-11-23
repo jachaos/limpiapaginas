@@ -1,0 +1,109 @@
+{
+ "version": 1,
+ "nombre": "3 Detectar texto",
+ "descripcion": "Compara los dos detectores de texto sobre la página ya limpia. No modifica la imagen.",
+ "nodos": [
+  {
+   "id": 1,
+   "tipo": "entrada/pagina",
+   "pos": [
+    40,
+    70
+   ],
+   "params": {
+    "modo": "grises"
+   },
+   "activo": true
+  },
+  {
+   "id": 2,
+   "tipo": "fondo/aplanar",
+   "pos": [
+    340,
+    70
+   ],
+   "params": {
+    "tam": 61,
+    "suavizado": 31,
+    "modo": "dividir"
+   },
+   "activo": true
+  },
+  {
+   "id": 3,
+   "tipo": "fondo/transparencia",
+   "pos": [
+    640,
+    70
+   ],
+   "params": {
+    "fuerte": 0,
+    "debil": 0,
+    "relleno": "blanco",
+    "fuerza": 0.85
+   },
+   "activo": true
+  },
+  {
+   "id": 4,
+   "tipo": "texto/hay_texto",
+   "pos": [
+    940,
+    70
+   ],
+   "params": {
+    "contraste": 20,
+    "alto_min": 6,
+    "alto_max": 70,
+    "letras_por_linea": 4,
+    "lineas_min": 2,
+    "union": 2.5
+   },
+   "activo": true
+  },
+  {
+   "id": 5,
+   "tipo": "neuronal/detector_texto",
+   "pos": [
+    940,
+    560
+   ],
+   "params": {
+    "modelo": "PP-OCRv6_det_small.onnx",
+    "lado_max": 1280,
+    "umbral": 0.3,
+    "umbral_caja": 0.6,
+    "expandir": 1.6,
+    "alto_max": 12.0,
+    "lineas_min": 1
+   },
+   "activo": true
+  }
+ ],
+ "enlaces": [
+  [
+   1,
+   "imagen",
+   2,
+   "imagen"
+  ],
+  [
+   2,
+   "imagen",
+   3,
+   "imagen"
+  ],
+  [
+   3,
+   "imagen",
+   4,
+   "imagen"
+  ],
+  [
+   3,
+   "imagen",
+   5,
+   "imagen"
+  ]
+ ]
+}
