@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>LimpiaPáginas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/vendor/litegraph.css">
+<link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+<header id="barra">
+  <div class="marca">LimpiaPáginas</div>
+
+  <div class="grupo" title="Página sobre la que se prueba el flujo">
+    <button id="pag-anterior" class="icono" title="Página anterior">‹</button>
+    <select id="pagina" title="Página de prueba"></select>
+    <button id="pag-siguiente" class="icono" title="Página siguiente">›</button>
+    <button id="btn-subir" title="Añadir imágenes a la carpeta de entrada">Subir…</button>
+    <button id="btn-carpeta" title="Cambiar la carpeta de entrada">Carpeta…</button>
+    <input type="file" id="fichero" multiple accept=".png,.jpg,.jpeg,.tif,.tiff,.bmp,.webp" hidden>
+  </div>
+
+  <div class="grupo">
+    <button id="btn-ejecutar" class="primario" title="Ejecuta el flujo sobre la página elegida (Ctrl+Intro)">▶ Ejecutar</button>
+    <label class="casilla" title="Vuelve a ejecutar solo al cambiar un parámetro o una conexión">
+      <input type="checkbox" id="auto" checked> automático</label>
+    <span id="tiempo" class="tenue"></span>
+  </div>
+
+  <div class="grupo">
+    <select id="flujos" title="Flujos guardados"></select>
+    <button id="btn-guardar" title="Guarda el flujo en la carpeta «flujos»">Guardar</button>
+    <button id="btn-nuevo" title="Empieza un flujo vacío">Nuevo</button>
+  </div>
+
+  <div class="grupo derecha">
+    <button id="btn-lote" title="Aplica el flujo a todas las páginas de una carpeta">Procesar carpeta…</button>
+    <select id="dispositivo" title="Dónde se ejecutan los nodos con versión GPU">
+      <option value="auto">GPU si hay</option>
+      <option value="cpu">Solo CPU</option>
+      <option value="gpu">GPU</option>
+    </select>
+    <span id="chip-gpu" class="chip" title=""></span>
+  </div>
+</header>
+
+<main>
+  <aside id="paleta">
+    <input type="search" id="buscar" placeholder="Buscar proceso…" autocomplete="off">
+    <div id="lista-nodos"></div>
+    <div class="pie-paleta">
+      <button id="btn-recargar" title="Vuelve a leer los nodos de Python, incluidos los de «nodos_extra»">Recargar nodos</button>
+    </div>
+  </aside>
+
+  <section id="zona-lienzo">
+    <canvas id="lienzo"></canvas>
+    <div id="ayuda-lienzo" class="tenue">
+      Pulsa un proceso de la izquierda para añadirlo detrás del nodo seleccionado · arrastra de un punto a otro para conectar ·
+      botón derecho sobre un nodo para intercambiarlo, desactivarlo o eliminarlo
+    </div>
+    <div id="avisos"></div>
+  </section>
+
+  <div id="divisor" title="Arrastra para cambiar el tamaño"></div>
+
+  <aside id="visor">
+    <div id="visor-cabecera">
+      <div id="visor-titulo">Sin selección</div>
+      <div id="visor-salidas"></div>
+    </div>
+    <div id="visor-herramientas">
+      <button id="btn-original" title="Mantén pulsado para ver la página original (tecla O)">Ver original</button>
+      <button id="btn-ajustar" title="Ajusta la imagen al panel (tecla F)">Ajustar</button>
+      <button id="btn-100" title="Tamaño real (tecla 1)">100 %</button>
+      <a id="btn-descargar" class="boton" download title="Descarga esta imagen a tamaño completo">Descargar</a>
+      <span id="visor-zoom" class="tenue"></span>
+    </div>
+    <div id="visor-marco"><canvas id="visor-lienzo"></canvas><div id="visor-vacio" class="tenue">Selecciona un nodo para ver su resultado</div></div>
+    <div id="visor-info"></div>
+  </aside>
+</main>
+
+<dialog id="dlg-lote">
+  <form method="dialog">
+    <h2>Procesar una carpeta</h2>
+    <p class="tenue">Se aplica el flujo actual a cada imagen. Los nodos «Guardar página» escriben el resultado y se
+      genera un <code>informe.csv</code> con los datos de cada página.</p>
+    <label>Carpeta de entrada<input type="text" id="lote-entrada" spellcheck="false"></label>
+    <label>Carpeta de salida<input type="text" id="lote-salida" spellcheck="false"></label>
+    <label class="casilla"><input type="checkbox" id="lote-recursivo"> incluir subcarpetas (se conserva la estructura)</label>
+    <div id="lote-progreso" hidden>
+      <progress id="lote-barra" value="0" max="1"></progress>
+      <div id="lote-texto" class="tenue"></div>
+      <div id="lote-errores"></div>
+    </div>
+    <div class="botones">
+      <button type="button" id="lote-cancelar" hidden>Cancelar lote</button>
+      <button type="button" id="lote-cerrar">Cerrar</button>
+      <button type="button" id="lote-empezar" class="primario">Empezar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-texto">
+  <form method="dialog">
+    <h2 id="dlg-texto-titulo"></h2>
+    <p id="dlg-texto-ayuda" class="tenue"></p>
+    <input type="text" id="dlg-texto-valor" spellcheck="false">
+    <div class="botones">
+      <button type="button" id="dlg-texto-cancelar">Cancelar</button>
+      <button type="submit" class="primario">Aceptar</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/static/vendor/litegraph.core.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
