@@ -30,6 +30,14 @@ Or download the ZIP from GitHub (**Code → Download ZIP**) and unzip it to a sh
 
 The installer creates its own environment in `.venv`, installs the dependencies and, if it finds an NVIDIA card, PyTorch and ONNX Runtime with CUDA. It ends with a diagnosis of what is working, and it can be run again at any time.
 
+**Text detector model (one-off download).** The neural text detector, used by the **3 Detectar texto** recipe, needs PaddleOCR's [PP-OCRv6 small detection model](https://huggingface.co/docs/transformers/model_doc/pp_ocrv6_small_det), which is not included in this repository. Download `inference.onnx` from [PaddlePaddle/PP-OCRv6_small_det_onnx](https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/tree/main) on Hugging Face and save it as `modelos/PP-OCRv6_det_small.onnx`, or from the project folder (Linux, or Windows 10/11; in PowerShell type `curl.exe` instead of `curl`):
+
+```bash
+curl -L -o modelos/PP-OCRv6_det_small.onnx https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/resolve/main/inference.onnx
+```
+
+The other processes and recipes work without it.
+
 The app opens in the browser at `http://127.0.0.1:8765` and only listens on your own machine. Pick a page from `datos/entrada` (three synthetic examples and three real pages from 1845, 1907 and 1909), choose the recipe **1 Limpieza general** and click the boxes to see what each step does.
 
 To check the installation, with CPU and GPU timings:
@@ -118,7 +126,7 @@ LimpiaPáginas is released under the MIT licence (see `LICENSE`).
 Third-party components:
 
 - [LiteGraph.js](https://github.com/jagenjo/litegraph.js) (MIT), the diagram editor, in `limpiapaginas/web/vendor/`.
-- The `PP-OCRv6_det_small.onnx` model from [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache 2.0), taken from the [RapidOCR](https://github.com/RapidAI/RapidOCR) package, in `modelos/`. Licence text in `modelos/LICENSE-PaddleOCR-Apache-2.0.txt`.
+- The PP-OCRv6 small text detection model from [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache 2.0) is not included; it is downloaded from [Hugging Face](https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/tree/main) (see above). Licence text in `modelos/LICENSE-PaddleOCR-Apache-2.0.txt`.
 
 ## Author
 

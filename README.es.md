@@ -28,6 +28,14 @@ diagnóstico que dice qué ha quedado funcionando.
 
 El instalador se puede repetir sin problema, por ejemplo tras actualizar el controlador de la gráfica.
 
+**Modelo del detector de texto (se descarga una vez).** El detector de texto neuronal, que usa la receta **3 Detectar texto**, necesita el [modelo de detección PP-OCRv6 small](https://huggingface.co/docs/transformers/model_doc/pp_ocrv6_small_det) de PaddleOCR, que no se incluye en el repositorio. Descarga `inference.onnx` de [PaddlePaddle/PP-OCRv6_small_det_onnx](https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/tree/main) en Hugging Face y guárdalo como `modelos/PP-OCRv6_det_small.onnx`, o desde la carpeta del proyecto (Linux, o Windows 10/11; en PowerShell escribe `curl.exe` en lugar de `curl`):
+
+```bash
+curl -L -o modelos/PP-OCRv6_det_small.onnx https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/resolve/main/inference.onnx
+```
+
+El resto de procesos y recetas funciona sin él.
+
 ## Arrancar
 
 **Windows:** doble clic en `iniciar.bat`. **Linux:** `./iniciar.sh`.
@@ -209,5 +217,5 @@ El código de LimpiaPáginas se publica con licencia MIT (ver `LICENSE`).
 ## Licencias de terceros
 
 - [LiteGraph.js](https://github.com/jagenjo/litegraph.js) (MIT), el editor de diagramas, en `limpiapaginas/web/vendor/`.
-- Modelo `PP-OCRv6_det_small.onnx` de [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache 2.0),
-  tomado del paquete [RapidOCR](https://github.com/RapidAI/RapidOCR), en `modelos/`. Texto de la licencia en `modelos/LICENSE-PaddleOCR-Apache-2.0.txt`.
+- Modelo de detección de texto PP-OCRv6 small de [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) (Apache 2.0):
+  no se incluye, se descarga de [Hugging Face](https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/tree/main) (ver Instalación). Texto de la licencia en `modelos/LICENSE-PaddleOCR-Apache-2.0.txt`.
